@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :customers, controllers: {
-    registrations: 'user/registrations'
+    registrations: 'customers/registrations'
   }
   devise_scope :customer do
     get 'addresses', to: 'customers/registrations#new_address'

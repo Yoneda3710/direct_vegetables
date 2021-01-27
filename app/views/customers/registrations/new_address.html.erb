@@ -10,7 +10,7 @@
 
   <div class="field">
     <%= f.label :prefecture %><br />
-    <%= f.text_field :prefecture %>
+    <%= f.collection_select :prefecture, Prefecture.all, :id, :name, {} %>
   </div>
 
   <div class="field">
@@ -26,16 +26,6 @@
   <div class="field">
     <%= f.label :building_name %><br />
     <%= f.text_field :building_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
   </div>
 
   <div class="actions">
