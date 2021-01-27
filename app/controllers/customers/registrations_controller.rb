@@ -4,6 +4,21 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+  def new
+    @customer = Customer.new
+  end
+
+  def create
+    @customer = Customer.new(sign_up_params)
+      unless @customer.valid?
+        render :new and return
+      end
+    session["devise.regist_data"] = {customer: @customer.attributes}
+    session["devise.regist_data"][:customer]["password"] = params[:customer][:password]
+    @address = @customer.build_address
+    render :new_address
+  end
+
   # GET /resource/sign_up
   # def new
   #   super
