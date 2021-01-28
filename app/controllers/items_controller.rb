@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   
   def index
-    @itme = Item.order(created_at: :desc).limit(5)
+    @item = Item.order(created_at: :desc).limit(5)
   end
 
   def new
