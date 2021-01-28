@@ -7,3 +7,12 @@
   <%= link_to "新規登録", new_customer_registration_path %>
   <%= link_to "ログイン", new_customer_session_path %>
 <% end %>
+<h2>producer</h2>
+<% if producer_signed_in?%>
+  <h2>ログインしています</h2>
+  <%= link_to "ログアウト", destroy_producer_session_path, method: :delete %>
+<% else %>
+  <h2>ログインしていません</h2>
+  <%= link_to "新規登録", new_producer_registration_path %>
+  <%= link_to "ログイン", new_producer_session_path %>
+<% end %>

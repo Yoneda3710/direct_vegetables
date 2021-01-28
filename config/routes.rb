@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :producers
+  devise_for :producers, controllers: {
+    registrations: 'producers/registrations'
+  }
+  
   devise_for :customers, controllers: {
     registrations: 'customers/registrations'
   }
