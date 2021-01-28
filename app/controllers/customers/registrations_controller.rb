@@ -19,6 +19,24 @@ class Customers::RegistrationsController < Devise::RegistrationsController
     render :new_address
   end
 
+  def create_address
+    @customer = Customer.new(session["devise.regist_data"]["customer"])
+    @address = Address.new(address_params)
+      unless @address.valid?
+        render :new_address and return
+      end 
+    @customer.build_address(@address.attributes)
+    @customer.save
+    session["devise.regist_data"]["customer"].clear
+    sign_in(:customer, @customer)
+  end
+
+  private
+
+  def address_params
+    params.require(:address).permit(:postal_code, :prefecture, :city, :house_number, :building_name)
+  end
+
   # GET /resource/sign_up
   # def new
   #   super
