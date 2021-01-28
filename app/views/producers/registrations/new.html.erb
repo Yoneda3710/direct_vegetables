@@ -1,0 +1,63 @@
+<h2>Sign up</h2>
+
+<%= form_for(@producer, url: producer_registration_path) do |f| %>
+  <%= render "devise/shared/error_messages", resource: @producer %>
+
+  <div class="field">
+    <%= f.label :family_name %><br />
+    <%= f.text_field :family_name %>
+  </div>
+
+  <div class="field">             
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :kana_family_name %><br />
+    <%= f.text_field :kana_family_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :kana_first_name %><br />
+    <%= f.text_field :kana_first_name %>
+  </div>
+
+  <div class="field">
+    <%= raw sprintf(
+                  f.date_select(
+                    :birthday,
+                    class:'select-birth',
+                    id:"birth-date",
+                    use_month_numbers: true,
+                    prompt:'--',
+                    start_year: 1930,
+                    end_year: (Time.now.year - 5),
+                    date_separator: '%s'),
+                  "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "次へ" %>
+  </div>
+<% end %>
+
+<%= render "producers/shared/links" %>

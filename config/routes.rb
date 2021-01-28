@@ -1,3 +1,17 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :producers, controllers: {
+    registrations: 'producers/registrations'
+  }
+  devise_scope :producer do
+    get 'addresses', to: 'producers/registrations#new_address'
+    post 'addresses', to: 'producers/registrations#create_address'
+  end
+  devise_for :customers, controllers: {
+    registrations: 'customers/registrations'
+  }
+  devise_scope :customer do
+    get 'addresses', to: 'customers/registrations#new_address'
+    post 'addresses', to: 'customers/registrations#create_address'
+  end
+  root to: "items#index"
 end
