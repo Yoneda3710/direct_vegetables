@@ -30,6 +30,7 @@ class Producers::RegistrationsController < Devise::RegistrationsController
     session["devise.regist_data"]["producer"].clear
     sign_in(:producer, @producer)
   end
+
  
   private
  

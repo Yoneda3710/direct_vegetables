@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   end
 
   resources :items
-
+  resources :producers
   root to: "items#index"
 end

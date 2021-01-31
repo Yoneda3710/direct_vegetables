@@ -1,0 +1,17 @@
+<div class="top">
+  <% if @producer.image.blank? %>
+    <%= link_to image_tag('/assets/icon.jpg',size: '120x120')%>
+  <% else %>
+    <%= image_tag @producer.image %>
+  <% end %>
+    <p><%= @producer.family_name %><%= @producer.first_name %>さんの商品一覧</p>
+</div>
+
+<div class="main">
+  <% @items.each do |item| %>
+    <div class="producer-items">
+      <%= link_to image_tag(item.image, size: '200x200'), item_path(item.id) %>
+      <p class="name"><%= item.name %></p>
+    </div>
+  <% end %>
+</div>
