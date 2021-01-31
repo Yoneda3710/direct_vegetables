@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'cards/new'
   devise_for :producers, controllers: {
     registrations: 'producers/registrations'
   }
@@ -17,5 +18,6 @@ Rails.application.routes.draw do
 
   resources :items
   resources :producers
+  resources :cards, only: [:new, :create]
   root to: "items#index"
 end
