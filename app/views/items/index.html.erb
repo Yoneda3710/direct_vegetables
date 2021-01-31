@@ -11,8 +11,39 @@
 <% if producer_signed_in?%>
   <h2>ログインしています</h2>
   <%= link_to "ログアウト", destroy_producer_session_path, method: :delete %>
+  <%= link_to "出品する", new_item_path %>
+  <%= link_to "マイページ",  "/producers/#{current_producer.id}" %>
 <% else %>
   <h2>ログインしていません</h2>
   <%= link_to "新規登録", new_producer_registration_path %>
   <%= link_to "ログイン", new_producer_session_path %>
 <% end %>
+
+<div class="contents">
+  <h2>Pick Up</h2>
+  <div class="items">
+    <% @item.each do |item| %>
+      <div class="item">
+        <div class="item-image">
+          <%= link_to image_tag(item.image, size: '250x250'), item_path(item.id) %>
+          <p><%= item.name %></p>
+          <p><%= item.price %>円(税込)</p>
+        </div>
+        <div class="item-info">
+          <div class="bubble03">
+           <%= item.description %> 
+          </div>
+          <div class="producer">
+            <% if item.producer.image.blank? %>
+             <%= link_to image_tag('/assets/icon.jpg',size: '120x120'), producer_path(item.producer.id) %>
+            <% else %>
+             <%= link_to image_tag(item.producer.image, size: '150x150'),producer_path(item.producer.id)  if item.producer.image.attached? %>
+            <% end %>
+            <p><%= "#{item.producer.family_name}"+ "#{item.producer.first_name}" %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="push"></div>
+</div>

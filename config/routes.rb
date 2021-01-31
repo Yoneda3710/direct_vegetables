@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get 'addresses', to: 'producers/registrations#new_address'
     post 'addresses', to: 'producers/registrations#create_address'
   end
+
   devise_for :customers, controllers: {
     registrations: 'customers/registrations'
   }
@@ -13,5 +14,8 @@ Rails.application.routes.draw do
     get 'addresses', to: 'customers/registrations#new_address'
     post 'addresses', to: 'customers/registrations#create_address'
   end
+
+  resources :items
+  resources :producers
   root to: "items#index"
 end
