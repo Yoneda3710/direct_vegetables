@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   get 'cards/new'
   
   devise_for :customers, controllers: {
-    sessions:      'customers/sessions',
-    passwords:     'customers/passwords',
     registrations: 'customers/registrations'
   }
   devise_scope :customer do
@@ -12,8 +10,6 @@ Rails.application.routes.draw do
   end
 
   devise_for :producers, controllers: {
-    sessions:      'producers/sessions',
-    passwords:     'producers/passwords',
     registrations: 'producers/registrations'
   }
   devise_scope :producer do
@@ -21,7 +17,10 @@ Rails.application.routes.draw do
     post 'addresses', to: 'producers/registrations#create_address'
   end
 
-  resources :items
+  resources :items do
+    post 'order', on: :member
+  end
+
   resources :producers
   resources :cards, only: [:new, :create]
   root to: "items#index"
