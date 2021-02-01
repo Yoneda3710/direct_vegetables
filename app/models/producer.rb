@@ -5,6 +5,6 @@ class Producer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :family_name, :first_name, :kana_family_name, :kana_first_name, :birthday ,presence: true
   has_many :items
-  has_one :address
+  has_one :producer_address
   has_one_attached :image
 end
