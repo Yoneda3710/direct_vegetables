@@ -15,17 +15,18 @@ class Producers::RegistrationsController < Devise::RegistrationsController
      end
     session["devise.regist_data"] = {producer: @producer.attributes}
     session["devise.regist_data"][:producer]["password"] = params[:producer][:password]
-    @address = @producer.build_address
-    render :new_address
+    @producer_address = @producer.build_producer_address
+    render :new_producer_address
   end
   
-  def create_address
+  def create_producer_address
+    binding.pry
     @producer = Producer.new(session["devise.regist_data"]["producer"])
-    @address = Address.new(address_params)
-     unless @address.valid?
-       render :new_address and return
+    @producer_address = ProducerAddress.new(producer_address_params)
+     unless @producer_address.valid?
+       render :new_producer_address and return
      end
-    @producer.build_address(@address.attributes)
+    @producer.build_producer_address(@producer_address.attributes)
     @producer.save
     session["devise.regist_data"]["producer"].clear
     sign_in(:producer, @producer)
@@ -34,8 +35,8 @@ class Producers::RegistrationsController < Devise::RegistrationsController
  
   private
  
-  def address_params
-    params.require(:address).permit(:postal_code, :prefecture, :city, :house_number, :building_name)
+  def producer_address_params
+    params.require(:producer_address).permit(:postal_code, :prefecture, :city, :house_number, :building_name)
   end
  
   # GET /resource/sign_up

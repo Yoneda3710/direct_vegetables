@@ -13,8 +13,8 @@ Rails.application.routes.draw do
     registrations: 'producers/registrations'
   }
   devise_scope :producer do
-    get 'addresses', to: 'producers/registrations#new_address'
-    post 'addresses', to: 'producers/registrations#create_address'
+    get 'producer_addresses', to: 'producers/registrations#new_producer_address'
+    post 'producer_addresses', to: 'producers/registrations#create_producer_address'
   end
 
   resources :items do
