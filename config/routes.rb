@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :producers, controllers: {
-    registrations: 'producers/registrations'
-  }
-  devise_scope :producer do
-    get 'addresses', to: 'producers/registrations#new_address'
-    post 'addresses', to: 'producers/registrations#create_address'
-  end
-
+  get 'cards/new'
+  
   devise_for :customers, controllers: {
     registrations: 'customers/registrations'
   }
@@ -15,7 +9,19 @@ Rails.application.routes.draw do
     post 'addresses', to: 'customers/registrations#create_address'
   end
 
-  resources :items
+  devise_for :producers, controllers: {
+    registrations: 'producers/registrations'
+  }
+  devise_scope :producer do
+    get 'addresses', to: 'producers/registrations#new_address'
+    post 'addresses', to: 'producers/registrations#create_address'
+  end
+
+  resources :items do
+    post 'order', on: :member
+  end
+
   resources :producers
+  resources :cards, only: [:new, :create]
   root to: "items#index"
 end
