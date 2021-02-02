@@ -5,11 +5,46 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://js.pay.jp/" , type="text/javascript"></script>
 
   <body>
+  　<div class='container'>
+    <div class="header">
+      <div class="title">
+       <h1><span class="c1">D</span>-vese</h1>
+       <p>農家から直接野菜を購入しよう！</p>
+       <div class="btn">
+        <ul>
+          <% if producer_signed_in? %>
+           <li class="left"><%= link_to '商品を投稿する', new_item_path %>
+           <li class="center"><%= link_to 'マイページ', "/producers/#{current_producer.id}" %>
+           <li class="right"><%= link_to 'ログアウト', destroy_producer_session_path, method: :delete %>
+          <% elsif customer_signed_in? %> 
+            <li class="center"><%= link_to '購入履歴', "/customers/#{current_customer.id}" %>
+            <li class="right"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
+          <% else %>
+           <li class="left"><%= link_to 'ログイン', new_customer_session_path %></li>
+           <li class="right"><%= link_to '新規登録', new_customer_registration_path %></li>
+          <% end %>
+        </ul>
+       </div>
+     </div>
+    </div>
     <%= yield %>
+
+    <div class="footer">
+    <% if customer_signed_in? && current_customer.card == nil %>
+      <%= link_to 'クレジットカードを登録する', new_card_path %>
+    <% else !customer_signed_in? %>
+      <%= link_to '生産者の方はこちら', new_producer_session_path %>
+    <% end %>
+    </div>
+  　</div>
+  </body>
+</html>
+
   </body>
 </html>
