@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :producers
+  resources :customers
   resources :cards, only: [:new, :create]
   root to: "items#index"
 end

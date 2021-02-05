@@ -20,7 +20,6 @@ class Producers::RegistrationsController < Devise::RegistrationsController
   end
   
   def create_producer_address
-    binding.pry
     @producer = Producer.new(session["devise.regist_data"]["producer"])
     @producer_address = ProducerAddress.new(producer_address_params)
      unless @producer_address.valid?

@@ -9,42 +9,49 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://js.pay.jp/" , type="text/javascript"></script>
-
+  </head>
   <body>
-  　<div class='container'>
+  <div class='container'>
     <div class="header">
       <div class="title">
-       <h1><span class="c1">D</span>-vese</h1>
+       <h1><span class="c1">D</span>-vege</h1>
        <p>農家から直接野菜を購入しよう！</p>
        <div class="btn">
-        <ul>
-          <% if producer_signed_in? %>
+         <ul>
+          <% if producer_signed_in? && !current_page?("/producers/#{current_producer.id}") %>
            <li class="left"><%= link_to '商品を投稿する', new_item_path %>
+           <li class="right"><%= link_to 'ログアウト', destroy_producer_session_path, method: :delete %>
            <li class="center"><%= link_to 'マイページ', "/producers/#{current_producer.id}" %>
+          <% elsif producer_signed_in? %>
+           <li class="left"><%= link_to '商品を投稿する', new_item_path %>
            <li class="right"><%= link_to 'ログアウト', destroy_producer_session_path, method: :delete %>
           <% elsif customer_signed_in? %> 
-            <li class="center"><%= link_to '購入履歴', "/customers/#{current_customer.id}" %>
+            <li class="center"><%= link_to '購入履歴', customer_path(current_customer.id) %>
             <li class="right"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
           <% else %>
            <li class="left"><%= link_to 'ログイン', new_customer_session_path %></li>
            <li class="right"><%= link_to '新規登録', new_customer_registration_path %></li>
           <% end %>
-        </ul>
-       </div>
-     </div>
+         </ul>
+        </div>
+      </div>
     </div>
     <%= yield %>
 
     <div class="footer">
-    <% if customer_signed_in? && current_customer.card == nil %>
-      <%= link_to 'クレジットカードを登録する', new_card_path %>
-    <% else !customer_signed_in? %>
-      <%= link_to '生産者の方はこちら', new_producer_session_path %>
-    <% end %>
+     <% if customer_signed_in? && current_customer.card == nil && !current_page?("/cards/new")%>
+       <%= link_to 'クレジットカードを登録する', new_card_path %>
+     <% elsif !customer_signed_in? && !producer_signed_in? && !current_page?(root_path) %>
+       <%= link_to 'トップページへ', root_path %><br>
+       <%= link_to '生産者の方はこちら', new_producer_session_path %>
+     <% elsif customer_signed_in? && !current_page?(root_path) %>
+       <%= link_to 'トップページへ', root_path %>
+     <% elsif producer_signed_in? && !current_page?(root_path) %>
+       <%= link_to 'トップページへ', root_path %>
+     <% elsif !customer_signed_in? && !producer_signed_in? %>
+       <%= link_to '生産者の方はこちら', new_producer_session_path %>
+     <% end %>
     </div>
-  　</div>
-  </body>
-</html>
-
+  </div>
   </body>
 </html>

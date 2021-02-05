@@ -1,0 +1,13 @@
+.top {
+  text-align: center;
+  margin-top: 20px;
+}
+.top p {
+  font-size: 20px;
+}
+.main {
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 40px;
+}
