@@ -1,5 +1,12 @@
-<%= link_to "カードを登録する" , new_card_path %>
-<h2>商品購入にはカード登録が必要です</h2>
-
-<h2>登録が完了しました</h2>
-<%= link_to "トップへ戻る", root_path%>
+<div class="done-contents">
+  <div class="done-message">
+    <h1>登録が完了しました</h1>
+  </div>
+  <div class="done-btn">
+    <%= link_to "カードを登録する", new_card_path, {class: "d-btn"} %>
+    <%= link_to "トップへ戻る", root_path, {class: "d-btn"}%>
+  </div>
+  <div class="caution">
+    <p>※商品購入にはクレジットカード登録が必要です</p>
+  </div>
+</div>

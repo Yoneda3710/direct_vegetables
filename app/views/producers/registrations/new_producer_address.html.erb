@@ -1,36 +1,49 @@
-<h2>住所情報登録</h2>
-
-<%= form_for @producer_address do |f| %>
+<%= form_for @producer_address, html: { class: "transaction-main" } do |f| %>
   <%= render "devise/shared/error_messages", resource: @producer_address %>
-
-  <div class="field">
-    <%= f.label :postal_code %><br />
-    <%= f.text_field :postal_code %>
+  <div class='shipping-address-form'>
+    <h1 class='info-input-haedline'>
+      住所入力
+    </h1>
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">郵便番号</label>
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_field :postal_code, class:"input-default", id:"postal-code", placeholder:"例）123-4567", maxlength:"8" %>
+    </div>
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">都道府県</label>
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.collection_select :prefecture, Prefecture.all, :id, :name, {}, class:"input-default" %>
+    </div>
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">市区町村</label>
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_field :city, class:"input-default", placeholder:"例）横浜市緑区"%>
+    </div>
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">番地</label>
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_field :house_number, class:"input-default", placeholder:"例）青山1-1-1"%>
+    </div>
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">建物名</label>
+        <span class="form-any">任意</span>
+      </div>
+      <%= f.text_field :building_name, class:"input-default", placeholder:"例）柳ビル103"%>
+    </div>
+  </div>
+    
+  <div class='address-btn'>
+    <%= f.submit "登録" ,class:"address-red-btn" %>
   </div>
 
-  <div class="field">
-    <%= f.label :prefecture %><br />
-    <%= f.collection_select :prefecture, Prefecture.all, :id, :name, {} %>
-  </div>
-
-  <div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </div>
-
-  <div class="field">
-    <%= f.label :house_number %><br />
-    <%= f.text_field :house_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :building_name %><br />
-    <%= f.text_field :building_name %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+  
 <% end %>
-
-<%= render "devise/shared/links" %>

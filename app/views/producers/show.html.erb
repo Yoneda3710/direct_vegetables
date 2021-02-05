@@ -1,8 +1,8 @@
 <div class="top">
   <% if @producer.image.blank? %>
-    <%= link_to image_tag('/assets/icon.jpg',size: '120x120')%>
+    <%= link_to image_tag('/assets/icon.jpg',size: '400x400')%>
   <% else %>
-    <%= image_tag @producer.image %>
+    <%= image_tag @producer.image, size: '100x100' %>
   <% end %>
     <p><%= @producer.family_name %><%= @producer.first_name %>さんの商品一覧</p>
 </div>
