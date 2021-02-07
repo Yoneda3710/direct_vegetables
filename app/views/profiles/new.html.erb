@@ -1,0 +1,36 @@
+<div class="items-sell-contents">
+  
+  <div class="items-sell-main">
+
+  <%= form_with model: @profile, url:producer_profiles_path(current_producer.id),local: true do |f| %>
+
+   <div class="img-upload">
+      <div class="weight-bold-text">
+        プロフィール画像
+      </div>
+      <div class="click-upload">
+        <p>
+          クリックしてファイルをアップロード
+        </p>
+        <%= f.file_field :image, id:"item-image" %>
+      </div>
+    </div>
+    
+    
+    <div class="new-items">
+      <div class="items-explain">
+        <div class="weight-bold-text">
+          コメント
+        </div>
+        <%= f.text_area :producer_comment, class:"items-text", id:"item-info", placeholder:"コメント",rows:"7" ,maxlength:"1000" %>
+      </div>
+    </div>
+    <div class="sell-btn-contents">
+      <%= f.submit "登録する" ,class:"sell-btn" %>
+      <%=link_to 'もどる',  producer_path(current_producer.id), class:"back-btn" %>
+    </div>
+
+  </div>
+  <% end %>
+
+</div>

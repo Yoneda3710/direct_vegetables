@@ -8,10 +8,10 @@
     </div>
     <div class='description-box'>
       <div class='producer'>
-        <% if @item.producer.image.blank? %>
+        <% if @item.producer.profile.blank? %>
           <%= link_to image_tag('/assets/icon.jpg',size: '150x150'), producer_path(@item.producer.id)%>
         <% else %>
-          <%= link_to image_tag(@item.producer.image, size: '200x200'), producer_path(@item.producer.id)%>
+          <%= link_to image_tag(@item.producer.profile.image, size: '150x150'), producer_path(@item.producer.id)%>
         <%end%>
         <p><%= @item.producer.family_name %><%= @item.producer.first_name %></p>
       </div>

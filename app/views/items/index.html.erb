@@ -13,10 +13,10 @@
            <%= item.description %> 
           </div>
           <div class="producer">
-            <% if item.producer.image.blank? %>
+            <% if item.producer.profile.blank? %>
              <%= link_to image_tag('/assets/icon.jpg',size: '120x120'), producer_path(item.producer.id) %>
             <% else %>
-             <%= link_to image_tag(item.producer.image, size: '150x150'),producer_path(item.producer.id)  if item.producer.image.attached? %>
+             <%= link_to image_tag(item.producer.profile.image, size: '120x120'), producer_path(item.producer.id)  if item.producer.profile.image.attached? %>
             <% end %>
             <p><%= "#{item.producer.family_name}"+ "#{item.producer.first_name}" %></p>
           </div>
