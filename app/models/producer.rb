@@ -6,5 +6,5 @@ class Producer < ApplicationRecord
   validates :family_name, :first_name, :kana_family_name, :kana_first_name, :birthday ,presence: true
   has_many :items
   has_one :producer_address
-  has_one_attached :image
+  has_one :profile
 end

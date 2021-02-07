@@ -21,7 +21,9 @@ Rails.application.routes.draw do
     post 'order', on: :member
   end
 
-  resources :producers
+  resources :producers do
+    resources :profiles
+  end
   resources :customers
   resources :cards, only: [:new, :create]
   root to: "items#index"

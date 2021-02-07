@@ -1,0 +1,28 @@
+.profile-show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile {
+  color: #fff;
+  position: relative;
+  border-radius: 5px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f39800;
+  width :60%;
+  text-align: center;
+}
+/* 三角アイコン */
+.profile::before{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  left: 370px;
+  top: -15px;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid#f39800;
+  border-left: 15px solid transparent;
+}
