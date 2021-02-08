@@ -1,0 +1,24 @@
+<div class="items">  
+  <% @items.each do |item| %>
+    <div class="item">
+      <div class="item-image">
+        <%= link_to image_tag(item.image, size: '250x250'), item_path(item.id) %>
+        <p><%= item.name %></p>
+        <p><%= item.price %>円(税込)</p>
+      </div>
+      <div class="item-info">
+        <div class="bubble03">
+         <%= item.description %> 
+        </div>
+        <div class="producer">
+          <% if item.producer.profile.blank? %>
+            <%= link_to image_tag('/assets/icon.jpg',size: '120x120'), producer_path(item.producer.id) %>
+          <% else %>
+            <%= link_to image_tag(item.producer.profile.image, size: '120x120'), producer_path(item.producer.id)  if item.producer.profile.image.attached? %>
+          <% end %>
+          <p><%= "#{item.producer.family_name}"+ "#{item.producer.first_name}" %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
