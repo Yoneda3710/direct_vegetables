@@ -3,3 +3,4 @@ class Item < ApplicationRecord
   has_one :item_order
   has_one_attached :image
 end
+

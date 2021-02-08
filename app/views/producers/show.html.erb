@@ -6,7 +6,9 @@
     <% end %>
   </div>
   <div class="profile-show">
-    <h2 class="profile"><%= @profile.producer_comment %></h2>
+    <% if !@producer.profile.blank?%>
+      <h2 class="profile"><%= @profile.producer_comment %></h2>
+    <% end %>
   </div>
 
   <div class='sell-btn-contents'>

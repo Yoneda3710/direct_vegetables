@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :items do
     post 'order', on: :member
+    get :search, on: :collection
   end
 
   resources :producers do

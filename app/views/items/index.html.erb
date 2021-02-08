@@ -1,4 +1,12 @@
 <div class="contents">
+
+  <div class="search-form">
+    <%= form_with url: search_items_path, method: :get, local: true do |f| %>
+      <%= f.text_field :name %>
+      <%= f.submit "検索する" %>
+    <% end %>
+  </div>
+
   <h2>Pick Up</h2>
   <div class="items">
     <% @item.each do |item| %>
@@ -24,5 +32,4 @@
       </div>
     <% end %>
   </div>
-  <div class="push"></div>
 </div>
