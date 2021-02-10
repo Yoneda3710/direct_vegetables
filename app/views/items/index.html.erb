@@ -14,7 +14,7 @@
         <div class="item-image">
           <%= link_to image_tag(item.image, size: '250x250'), item_path(item.id) %>
           <p><%= item.name %></p>
-          <p><%= item.price %>円(税込)</p>
+          <p><%= item.price %>円(税込)    <%= item.producer.producer_address.prefecture.name%>産</p>
         </div>
         <div class="item-info">
           <div class="bubble03">

@@ -35,7 +35,7 @@ class Producers::RegistrationsController < Devise::RegistrationsController
   private
  
   def producer_address_params
-    params.require(:producer_address).permit(:postal_code, :prefecture, :city, :house_number, :building_name)
+    params.require(:producer_address).permit(:postal_code, :prefecture_id, :city, :house_number, :building_name)
   end
  
   # GET /resource/sign_up
