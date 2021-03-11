@@ -16,7 +16,7 @@ Overview
 ## Author
 *米田昌貴
 *yoneda0518@icloud.com
-[Yoneda3710](https://d-vesi.herokuapp.com/)
+[https://github.com/Yoneda3710/direct_vegetables](http://54.250.24.19/)
 
 ## customers テーブル
 
